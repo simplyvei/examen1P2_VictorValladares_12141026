@@ -13,6 +13,13 @@ public class Escuadron {
     public Escuadron() {
     }
 
+    public Escuadron(String nombre, String base, String lugar, boolean tipo) {
+        this.nombre = nombre;
+        this.base = base;
+        this.lugar = lugar;
+        this.tipo = tipo;
+    }
+
     public Escuadron(String nombre, String base, String lugar, Persona lider, boolean tipo) {
         this.nombre = nombre;
         this.base = base;

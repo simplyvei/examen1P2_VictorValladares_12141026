@@ -8,6 +8,8 @@ public class Examen1P2_VictorValladares_12141026 {
     public static ArrayList <Universo> universos = new ArrayList ();
     public static ArrayList <Persona> Heroes = new ArrayList ();
     public static ArrayList <Persona> Villanos = new ArrayList ();
+    public static ArrayList <Escuadron> Squad_V = new ArrayList ();
+    public static ArrayList <Escuadron> Squad_H = new ArrayList ();
     
     public static Universo milkyWay = new Universo("Milky Way");
     
@@ -377,5 +379,165 @@ public class Examen1P2_VictorValladares_12141026 {
         int op = lea.nextInt();
         System.out.println("-----------------------------------------------");
         return op;
+    }
+    
+    public static int menuEscuadron(){
+        System.out.println("-----------------------------------------------");
+        System.out.print("1. Crear\n" +
+                        "2. Modificar\n" +
+                        "3. Eliminar\n" +
+                        "4. Listar\n" +
+                        "5. Agreagar persona\n" +
+                        "6. Simular Batalla\n" +
+                        "Ingrese la opcion: ");
+        int op = lea.nextInt();
+        System.out.println("-----------------------------------------------");
+        return op;
+    }
+    
+    public static void realizarEscuadron(int op){
+        if (op == 1){
+            crearSquad();
+        }else if (op == 2){
+           modificarSquad();
+        }else if (op == 3){
+           eliminarSquad();
+        }else if (op == 4){
+            listarSquad();
+        }else if (op == 5){
+            agregarPersona();
+        }else if (op == 6){
+            batalla();
+        } 
+    }
+    
+    public static void crearSquad(){
+        boolean tipo = false;
+        System.out.print("Es un escuadron de villanos [si/no]: ");
+        String resp = lea.next();
+        System.out.print("Ingrese el nombre de la squad: ");
+        String nombre = lea.nextLine();
+        int i = 0;
+        for (Universo lista : universos){
+            if (lista.getSquads().get(i).getNombre().equalsIgnoreCase(nombre)){
+                System.out.println("Este nombre ya existe, intente de nuevo");
+                System.out.print("Ingrese el nombre de la squad: ");
+                nombre = lea.nextLine();
+            }
+            i++;
+        }
+        System.out.print("Ingrese el nombre de la base: ");
+        String base = lea.nextLine();
+        System.out.print("Lugar donde se encuentra el escuadron: ");
+        String lugar = lea.nextLine();
+        if (resp.equalsIgnoreCase("si")){
+            tipo = true;
+        }
+        System.out.print("Ingrese la posicion del universo al que lo desea agregar: ");
+        int pos = lea.nextInt();
+        universos.get(pos).getSquads().add(new Escuadron(nombre, base, lugar, tipo));
+        if (tipo == true){
+            Squad_V.add(new Escuadron(nombre, base, lugar, tipo));
+        }else {
+            Squad_H.add(new Escuadron(nombre, base, lugar, tipo));
+        }
+    }
+    
+    public static void listarSquad(){
+        System.out.print("Desea ver escuadrones de heroes o villanos\n"+
+                        "1. Heroe\n" +
+                        "2. Villano\n"+
+                        "Ingrese la opcion: ");
+        int op = lea.nextInt();
+        if (op == 1){
+            for (Escuadron lista : Squad_H){
+                System.out.println(lista.toString());
+                System.out.println("-------------------------------------------");
+            }
+        }else{
+            for (Escuadron lista : Squad_V){
+                System.out.println(lista.toString());
+                System.out.println("-------------------------------------------");
+            }
+        }
+    }
+    
+    public static void modificarSquad(){
+        System.out.print("Ingrese la posicion del universo donde se encuentra el escuadron: ");
+        int pos1 = lea.nextInt();
+        System.out.print("Ingrese la posicion del escuadron al que desea agregar: ");
+        int pos2 = lea.nextInt();
+        boolean tipo = false;
+        System.out.print("Ingrese el nombre de la squad: ");
+        String nombre = lea.nextLine();
+        int i = 0;
+        for (Universo lista : universos){
+            if (lista.getSquads().get(i).getNombre().equalsIgnoreCase(nombre)){
+                System.out.println("Este nombre ya existe, intente de nuevo");
+                System.out.print("Ingrese el nombre de la squad: ");
+                nombre = lea.nextLine();
+            }
+            i++;
+        }
+        System.out.print("Ingrese el nombre de la base: ");
+        String base = lea.nextLine();
+        System.out.print("Lugar donde se encuentra el escuadron: ");
+        String lugar = lea.nextLine();
+        universos.get(pos1).getSquads().get(pos2).setNombre(nombre);
+        universos.get(pos1).getSquads().get(pos2).setLugar(lugar);
+        universos.get(pos1).getSquads().get(pos2).setBase(base);
+        System.out.print("Desea cambiar el lider [si/no]: ");
+        String resp = lea.next();
+        if (resp.equalsIgnoreCase("si")){
+            System.out.print("Ingrese la posicion de la persona que desea poner como lider: ");
+            int pos3 = lea.nextInt();
+            Persona lider = universos.get(pos1).getSquads().get(pos2).getMiembros().get(pos3);
+            universos.get(pos1).getSquads().get(pos2).setLider(lider);
+        }
+    }
+    
+    public static void agregarPersona(){
+        System.out.print("Ingrese la posicion del universo donde se encuentra el escuadron: ");
+        int pos1 = lea.nextInt();
+        System.out.print("Ingrese la posicion del escuadron al que desea agregar: ");
+        int pos2 = lea.nextInt();
+        System.out.print("Ingrese la posicion de la persona que desea agregar: ");
+        int pos3 = lea.nextInt();
+        System.out.print("Desea agreagar esta persona como lider [si/no]: ");
+        String val = lea.next();
+        if (universos.get(pos1).getSquads().get(pos2).isTipo() == true){
+            if (Villanos.get(pos3).isEscuadron() == true){
+                System.out.println("No se puede agreagar ya que ya esta en un escuadron");
+            }else{
+                if (val.equalsIgnoreCase("si")){
+                    universos.get(pos1).getSquads().get(pos2).setLider(Villanos.get(pos3));
+                }
+                universos.get(pos1).getSquads().get(pos2).getMiembros().add(Villanos.get(pos3));
+                Villanos.get(pos3).setEscuadron(true);
+            }
+            
+        }else{
+            if (Heroes.get(pos3).isEscuadron() == true){
+                System.out.println("No se puede agreagar ya que ya esta en un escuadron");
+            }else{
+                if (val.equalsIgnoreCase("si")){
+                    universos.get(pos1).getSquads().get(pos2).setLider(Heroes.get(pos3));
+                }
+                universos.get(pos1).getSquads().get(pos2).getMiembros().add(Heroes.get(pos3));
+                Heroes.get(pos3).setEscuadron(true);
+            }
+        }
+    }
+    
+    public static void eliminarSquad(){
+        System.out.print("Ingrese la posicion del universo donde se encuentra el escuadron a eliminar: ");
+        int pos1 = lea.nextInt();
+        System.out.print("Ingrese la posicion del escuadron que desea eliminar: ");
+        int pos2 = lea.nextInt();
+        universos.get(pos1).getSquads().remove(pos2);
+    }
+    
+    public static void batalla(){
+        
     }
 }
