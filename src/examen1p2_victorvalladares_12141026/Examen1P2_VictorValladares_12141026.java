@@ -1,21 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen1p2_victorvalladares_12141026;
 
-/**
- *
- * @author valla
- */
-public class Examen1P2_VictorValladares_12141026 {
+import java.util.Scanner;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Examen1P2_VictorValladares_12141026 {
     
+    public static Scanner lea = new Scanner (System.in);
+    
+    public static void main(String[] args) {
+        do{
+            realizar( menu() );
+        }while(true);
+    }
+    public static int menu(){
+        System.out.println("-----------------------------------------------");
+        System.out.println("0. Salir");
+        System.out.print("1. Crear familia\n" +
+                        "2. Crear persona\n" +
+                        "3. Imprimir familias\n" +
+                        "4. Pelea\n" +
+                        "Ingrese la opcion: ");
+        int op = lea.nextInt();
+        System.out.println("-----------------------------------------------");
+        return op;
+    }
+    public static void realizar(int op){
+        if (op == 0){
+            System.exit(0);
+        }else if (op == 1){
+            
+        }else if (op == 2){
+           
+        }else if (op == 3){
+           
+        }else if (op == 4){
+            
+        }
+    }
 }
