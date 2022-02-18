@@ -10,6 +10,13 @@ public class Alien extends Extraterrestre{
         super();
     }
 
+    public Alien(String planeta, String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica) {
+        super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica);
+        this.planeta = planeta;
+    }
+
+    
+
     public Alien(String planeta, String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica, boolean escuadron) {
         super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica, escuadron);
         this.planeta = planeta;
@@ -28,6 +35,7 @@ public class Alien extends Extraterrestre{
         return super.toString();
     }
     
+    @Override
     public void validarFuerza(int fuerza, int mental, int fisica) throws Validacion{
         if (getVillano().equalsIgnoreCase("villano")){
             if (fuerza + mental + fisica < 150){

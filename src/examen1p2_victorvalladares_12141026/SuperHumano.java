@@ -10,6 +10,12 @@ public class SuperHumano extends Persona{
         super();
     }
 
+    public SuperHumano(String superpoder, String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica) {
+        super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica);
+        this.superpoder = superpoder;
+    }
+
+
     public SuperHumano(String superpoder, String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica, boolean escuadron) {
         super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica, escuadron);
         this.superpoder = superpoder;
@@ -23,6 +29,7 @@ public class SuperHumano extends Persona{
         this.superpoder = superpoder;
     }
 
+    @Override
     public void validarFuerza(int fuerza, int mental, int fisica) throws Validacion{
         if (getVillano().equalsIgnoreCase("villano")){
             if (fuerza + mental + fisica < 150){

@@ -11,6 +11,12 @@ public class Accidente extends Persona{
         super();
     }
 
+    public Accidente(int edad, String tipo, String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica) {
+        super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica);
+        this.edad = edad;
+        this.tipo = tipo;
+    }
+
     public Accidente(int edad, String tipo, String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica, boolean escuadron) {
         super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica, escuadron);
         this.edad = edad;
@@ -33,6 +39,7 @@ public class Accidente extends Persona{
         this.tipo = tipo;
     }
     
+    @Override
     public void validarFuerza(int fuerza, int mental, int fisica) throws Validacion{
         if (getVillano().equalsIgnoreCase("villano")){
             if (fuerza + mental + fisica < 150){

@@ -8,6 +8,11 @@ public class Normal extends Persona{
         super();
     }
 
+    public Normal(String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica) {
+        super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica);
+    }
+
+    
     public Normal(String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica, boolean escuadron) {
         super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica, escuadron);
     }
@@ -17,6 +22,7 @@ public class Normal extends Persona{
         return super.toString();
     }
     
+    @Override
     public void validarFuerza(int fuerza, int mental, int fisica) throws Validacion{
         if (getVillano().equalsIgnoreCase("villano")){
             if (fuerza + mental + fisica < 150){

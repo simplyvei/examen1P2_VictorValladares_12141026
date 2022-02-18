@@ -14,6 +14,18 @@ public abstract class Persona {
     public Persona() {
     }
 
+    public Persona(String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica) {
+        this.nombre = nombre;
+        this.poder = poder;
+        this.debilidad = debilidad;
+        this.heroe = heroe;
+        this.villano = villano;
+        this.fuerza = fuerza;
+        this.mental = mental;
+        this.fisica = fisica;
+    }
+
+    
     public Persona(String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica, boolean escuadron) {
         this.nombre = nombre;
         this.poder = poder;

@@ -6,6 +6,10 @@ public abstract class Extraterrestre extends Persona{
         super();
     }
 
+    public Extraterrestre(String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica) {
+        super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica);
+    }
+
     public Extraterrestre(String nombre, String poder, String debilidad, String heroe, String villano, int fuerza, int mental, int fisica, boolean escuadron) {
         super(nombre, poder, debilidad, heroe, villano, fuerza, mental, fisica, escuadron);
     }
