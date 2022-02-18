@@ -30,6 +30,18 @@ public class Deidad extends Extraterrestre{
     public void setReligion(String religion) {
         this.religion = religion;
     }
+    
+    public void validarFuerza(int fuerza, int mental, int fisica) throws Validacion{
+        if (getVillano().equalsIgnoreCase("villano")){
+            if (fuerza + mental + fisica < 150){
+                throw new Validacion("No tiene lo suficiente para ser un villano");
+            }
+        }else{
+            if (fuerza + mental + fisica < 100){
+                throw new Validacion("No tiene lo suficiente para ser un heroe");
+            }
+        }
+    }
 
     @Override
     public String toString() {
@@ -37,8 +49,14 @@ public class Deidad extends Extraterrestre{
     }
 
     @Override
-    public void find_chance() {
+    public void find_chance(Persona p1, Persona p2) {
+        p1.setFisica((int)Math.round(p1.getFisica()*4));
+        p1.setMental((int)Math.round(p1.getMental()*4));
+        p1.setFuerza((int)Math.round(p1.getFuerza()*4));
         
+        p1.setFuerza((int)Math.round(p1.getFuerza()*0.5));
+        p1.setMental((int)Math.round(p1.getMental()*0.5));
+        p1.setFisica((int)Math.round(p1.getFisica()*0.5));
     }
     
     

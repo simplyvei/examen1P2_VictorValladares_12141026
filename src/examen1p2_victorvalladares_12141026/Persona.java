@@ -98,16 +98,28 @@ public abstract class Persona {
         this.escuadron = escuadron;
     }
 
+    public void validarFuerza(int fuerza, int mental, int fisica) throws Validacion{
+        if (getVillano().equalsIgnoreCase("villano")){
+            if (fuerza + mental + fisica < 150){
+                throw new Validacion("No tiene lo suficiente para ser un villano");
+            }
+        }else{
+            if (fuerza + mental + fisica < 100){
+                throw new Validacion("No tiene lo suficiente para ser un heroe");
+            }
+        }
+    }
+    
     @Override
     public String toString() {
         String devolver = "";
         if (getVillano().equalsIgnoreCase("villano")){
             devolver = "nombre = " + nombre + " debilidad = " + debilidad;
-        }else if (getHeroe().equalsIgnoreCase("heroe")){
+        }else{
             devolver = "nombre = " + nombre + " poder = " + poder;
         }
         return devolver;
     }
     
-    public abstract void find_chance();
+    public abstract void find_chance(Persona p1, Persona p2);
 }

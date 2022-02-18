@@ -17,6 +17,6 @@ public abstract class Extraterrestre extends Persona{
 
     
     @Override
-    public abstract void find_chance();
+    public abstract void find_chance(Persona p1, Persona p2);
     
 }

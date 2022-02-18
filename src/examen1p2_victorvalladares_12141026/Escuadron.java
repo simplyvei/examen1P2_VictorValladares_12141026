@@ -71,7 +71,7 @@ public class Escuadron {
 
     @Override
     public String toString() {
-        return " nombre = " + nombre + " lider = " + lider + " miembros = " + miembros;
+        return "nombre = " + nombre + " lider = " + lider + " miembros = " + miembros;
     }
     
 }
