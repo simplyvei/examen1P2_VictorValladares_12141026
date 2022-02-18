@@ -14,10 +14,11 @@ public class Examen1P2_VictorValladares_12141026 {
     public static int menu(){
         System.out.println("-----------------------------------------------");
         System.out.println("0. Salir");
-        System.out.print("1. Crear familia\n" +
-                        "2. Crear persona\n" +
-                        "3. Imprimir familias\n" +
-                        "4. Pelea\n" +
+        System.out.print("1. Crear Universo\n" +
+                        "2. Crear heroe o villano\n" +
+                        "3. Crear escuadron\n" +
+                        "4. Modificar o eliminar\n" +
+                        "5. Pelea\n" +
                         "Ingrese la opcion: ");
         int op = lea.nextInt();
         System.out.println("-----------------------------------------------");
