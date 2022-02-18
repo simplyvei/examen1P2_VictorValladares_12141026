@@ -68,7 +68,7 @@ public class Examen1P2_VictorValladares_12141026 {
     
     public static void listarUniverso(){
         for (Universo lista : universos){
-            System.out.print(lista.toString());
+            System.out.println(lista.toString());
             System.out.println("---------------------------------------------");
         }
     }
@@ -231,17 +231,139 @@ public class Examen1P2_VictorValladares_12141026 {
         } 
     }
     
+    public static void listarPersona(){
+        System.out.print("Desea ver los heroes o villanos\n"+
+                        "1. Heroe\n" +
+                        "2. Villano\n"+
+                        "Ingrese la opcion: ");
+        int op = lea.nextInt();
+        if (op == 1){
+            for (Persona lista : Villanos){
+                System.out.println(lista.toString());
+                System.out.println("-----------------------------------------");
+            }
+        }else {
+            for (Persona lista : Heroes){
+                System.out.println(lista.toString());
+                System.out.println("------------------------------------------");
+            }
+        }
+    }
     
+    public static void modificarPersona(){
+        System.out.print("Desea modificar un heroe o un villano\n"+
+                        "1. Heroe\n" +
+                        "2. Villano\n"+
+                        "Ingrese la opcion: ");
+        int op = lea.nextInt();
+        System.out.print("Ingrese la posicion que desea modificar: ");
+        int pos = lea.nextInt();
+        lea.nextLine();
+        System.out.print("Ingrese el nuevo nombre de la persoan: ");
+        String nombre = lea.nextLine();
+        System.out.print("Ingrese la nueva Fuerza: ");
+        int fuerza = lea.nextInt();
+        System.out.print("Ingrese la nueva habilidad mental: ");
+        int mental = lea.nextInt();
+        System.out.print("Ingrese la nueva habilidad fisica: ");
+        int fisica = lea.nextInt();
+        System.out.print("Ingrese la nueva debilidad: ");
+        String debilidad = lea.nextLine();
+        System.out.print("Ingrese el nuevo poder: ");
+        String poder = lea.nextLine();
+        
+        if (op == 1){
+            Villanos.get(pos).setNombre(nombre);
+            Villanos.get(pos).setFuerza(fuerza);
+            Villanos.get(pos).setMental(mental);
+            Villanos.get(pos).setFisica(fisica);
+            Villanos.get(pos).setDebilidad(debilidad);
+            Villanos.get(pos).setPoder(poder);
+        }else{
+            Heroes.get(pos).setNombre(nombre);
+            Heroes.get(pos).setFuerza(fuerza);
+            Heroes.get(pos).setMental(mental);
+            Heroes.get(pos).setFisica(fisica);
+            Heroes.get(pos).setDebilidad(debilidad);
+            Heroes.get(pos).setPoder(poder);
+        }
+        System.out.print("Ingrese el tipo de persona\n"+
+                        "1. Normal\n" +
+                        "2. Super Humano\n"+
+                        "3. Accidente Radioactivo\n"+
+                        "4. Mutante\n"+
+                        "5. Diedad\n"+
+                        "6. Alien\n"+
+                        "Ingrese la opcion: ");
+        int op1 = lea.nextInt();
+        
+        if (op == 1){
+            System.out.print("No hay nada que editar");
+        }else if(op == 2){
+            lea.nextLine();
+            System.out.print("Ingrese el superpoder: ");
+            String superpoder = lea.nextLine();
+            ((SuperHumano)Villanos.get(pos)).setSuperpoder(superpoder);
+        }else if (op == 3){
+            System.out.print("Ingrese la edad que tenia cuando ocurrio el accidente: ");
+            int edad = lea.nextInt();
+            lea.nextLine();
+            System.out.print("Que tipo de accidente tuvo: ");
+            String tipo = lea.nextLine();
+            ((Accidente)Villanos.get(pos)).setEdad(edad);
+            ((Accidente)Villanos.get(pos)).setTipo(tipo);
+        }else if (op == 4){
+            System.out.print("Ingrese la posicion del factor que desea editar: ");
+            int f_op = lea.nextInt();
+            lea.nextLine();
+            System.out.print("Ingrese un factor: ");
+            String factor = lea.nextLine();
+            ((Mutante)Villanos.get(pos)).getFactores().remove(f_op);
+            ((Mutante)Villanos.get(pos)).getFactores().add(f_op, factor);
+        }else if (op == 5){
+            lea.nextLine();
+            boolean creyentes = false;
+            System.out.print("Tiene creyentes [si/no]: ");
+            String val = lea.next();
+            if (val.equalsIgnoreCase("si")){
+                creyentes = true;
+            }
+            System.out.print("Ingrese el nombre de la mitologia o religion a la que pertenece: ");
+            String religion = lea.nextLine();
+            ((Deidad)Villanos.get(pos)).setCreyentes(creyentes);
+            ((Deidad)Villanos.get(pos)).setReligion(religion);
+        }else if (op == 6){
+            lea.nextLine();
+            System.out.print("De que planeta viene: ");
+            String planeta = lea.nextLine();
+            ((Alien)Villanos.get(pos)).setPlaneta(planeta);
+        }
+    }
+    
+    public static void eliminarPersona(){
+        System.out.print("Ingrese la posicion a eliminar: ");
+        int pos = lea.nextInt();
+        System.out.print("Ingrese si es heroe o villano\n"+
+                        "1. Heroe\n" +
+                        "2. Villano\n"+
+                        "Ingrese la opcion: ");
+        int op = lea.nextInt();
+        if (op == 1){
+            Villanos.remove(pos);
+        }else{
+            Heroes.remove(pos);
+        }
+    }
     
     public static void realizarPersona(int op){
         if (op == 1){
             crearPersona();
         }else if (op == 2){
-           
+           modificarPersona();
         }else if (op == 3){
-           
+           eliminarPersona();
         }else if (op == 4){
-            
+            listarPersona();
         }
     }
     
