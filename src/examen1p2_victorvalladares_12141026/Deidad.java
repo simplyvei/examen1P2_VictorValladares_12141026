@@ -57,6 +57,7 @@ public class Deidad extends Extraterrestre{
 
     @Override
     public void find_chance(Persona p1, Persona p2) {
+        if (p1 instanceof Deidad)
         p1.setFisica((int)Math.round(p1.getFisica()*4));
         p1.setMental((int)Math.round(p1.getMental()*4));
         p1.setFuerza((int)Math.round(p1.getFuerza()*4));
@@ -64,6 +65,7 @@ public class Deidad extends Extraterrestre{
         p1.setFuerza((int)Math.round(p1.getFuerza()*0.5));
         p1.setMental((int)Math.round(p1.getMental()*0.5));
         p1.setFisica((int)Math.round(p1.getFisica()*0.5));
+        
     }
     
     

@@ -578,32 +578,99 @@ public class Examen1P2_VictorValladares_12141026 {
         Persona p1 = universos.get(pos1).getSquads().get(pos2).getLider();
         Persona p2 = universos.get(pos1).getSquads().get(pos3).getLider();
         int atributo = r.nextInt(3)+1;
+        int index = 0;
+        int i = 0;
         if (atributo == 1){
+            System.out.println("DUELO DE FUERZA");
             if (p1.getFuerza() > p2.getFuerza()){
-                System.out.println("Ha ganado el lider del primer equipo, preparandose para ultima chance");
+                System.out.println("Ha ganado el lider del primer equipo "+ p1.getNombre()+ ", con una fuerza de " + p1.getFuerza() 
+                        +" sobre una fuerza de "+ p2.getFuerza()+ "preparandose para ultima chance");
+                
+                p2.setFuerza(999999999);
+                for (Universo lista : universos){
+                    if (p2.getFuerza() > lista.getSquads().get(pos3).getMiembros().get(i).getFuerza()){
+                        p2 = lista.getSquads().get(pos3).getMiembros().get(i);
+                        index = lista.getSquads().get(pos3).getMiembros().indexOf(universos.get(pos1).getSquads().get(pos3).getLider());
+                    }
+                    i++;
+                }
+                
+                universos.get(pos1).getSquads().get(pos2).getMiembros().get(index).find_chance(p1, p2);
                 
             }else if (p1.getFuerza() < p2.getFuerza()){
-                System.out.println("Ha ganado el lider del segundo equipo, preparandose para ultima chance");
+                System.out.println("Ha ganado el lider del segundo equipo "+ p2.getNombre()+ ", con una fuerza de " + p2.getFuerza() 
+                        +" sobre una fuerza de "+ p1.getFuerza()+ "preparandose para ultima chance");
+                
+                p1.setFuerza(999999999);
+                for (Universo lista : universos){
+                    if (p1.getFuerza() > lista.getSquads().get(pos3).getMiembros().get(i).getFuerza()){
+                        p1 = lista.getSquads().get(pos3).getMiembros().get(i);
+                    }
+                    i++;
+                }
             }else{
-                System.out.println("Hubo empate, no hay ganador");
+                System.out.println("Hubo empate fuerza del primer lider fue de: "+ p1.getFuerza()+ " y la fuerza del segundo lider fue:"+ p2.getFuerza()+  ", no hay ganador");
             }
         }else if (atributo == 2){
+            System.out.println("DUELO DE HABILIDAD FISICA");
             if (p1.getFisica() > p2.getFisica()){
-                System.out.println("Ha ganado el lider del primer equipo, preparandose para ultima chance");
+                System.out.println("Ha ganado el lider del primer equipo "+ p1.getNombre()+ ", con una habilidad fisica de " + p1.getFisica() 
+                        +" sobre una habilidad fisica de "+ p2.getFisica()+ "preparandose para ultima chance");
                 
-            }else if (p1.getFisica() < p2.getFisica()){
-                System.out.println("Ha ganado el lider del segundo equipo, preparandose para ultima chance");
+                p2.setFisica(999999999);
+                for (Universo lista : universos){
+                    if (p2.getFisica() > lista.getSquads().get(pos3).getMiembros().get(i).getFisica()){
+                        p2 = lista.getSquads().get(pos3).getMiembros().get(i);
+                    }
+                    i++;
+                }
+                
+            }else if (p1.getFisica() < p2.getFisica()){               
+                System.out.println("Ha ganado el lider del segundo equipo "+ p2.getNombre()+ ", con una habilidad fisica de " + p2.getFisica() 
+                        +" sobre una fuerza de "+ p1.getFisica()+ "preparandose para ultima chance");
+                
+                p1.setFisica(999999999);
+                for (Universo lista : universos){
+                    if (p1.getFisica() > lista.getSquads().get(pos3).getMiembros().get(i).getFisica()){
+                        p1 = lista.getSquads().get(pos3).getMiembros().get(i);
+                    }
+                    i++;
+                }
+                
+                
             }else{
-                System.out.println("Hubo empate, no hay ganador");
+                System.out.println("Hubo empate, habiliadad fisica del primer lider fue de: "+ p1.getFisica()+ " y la habilidad fisica del segundo lider fue:"+ p2.getFisica()+  ", no hay ganador");
             }
         }else if (atributo == 3){
+            System.out.println("DUELO DE HABILIDAD MENTAL");
             if (p1.getMental() > p2.getMental()){
-                System.out.println("Ha ganado el lider del primer equipo, preparandose para ultima chance");
+                System.out.println("Ha ganado el lider del primer equipo "+ p1.getNombre()+ ", con una habilidad mental de " + p1.getMental() 
+                        +" sobre una habilidad mental de "+ p2.getMental()+ "preparandose para ultima chance");
+                
+                p2.setMental(999999999);
+                for (Universo lista : universos){
+                    if (p2.getMental() > lista.getSquads().get(pos3).getMiembros().get(i).getMental()){
+                        p2 = lista.getSquads().get(pos3).getMiembros().get(i);
+                    }
+                    i++;
+                }
                 
             }else if (p1.getMental() < p2.getMental()){
-                System.out.println("Ha ganado el lider del segundo equipo, preparandose para ultima chance");
+                System.out.println("Ha ganado el lider del segundo equipo "+ p2.getNombre()+ ", con una habilidad mental de " + p2.getMental() 
+                        +" sobre una fuerza de "+ p1.getMental()+ "preparandose para ultima chance");
+                
+                p1.setMental(999999999);
+                for (Universo lista : universos){
+                    if (p1.getMental() > lista.getSquads().get(pos3).getMiembros().get(i).getMental()){
+                        p1 = lista.getSquads().get(pos3).getMiembros().get(i);
+                    }
+                    i++;
+                }
+                
             }else{
-                System.out.println("Hubo empate, no hay ganador");
+               System.out.println("Hubo empate, habiliadad mental del primer lider fue de: "+ p1.getMental()+ " y la habilidad mental del segundo lider fue:"+ p2.getMental()+  ", no hay ganador");
+                
+                
             }
         }
     }
