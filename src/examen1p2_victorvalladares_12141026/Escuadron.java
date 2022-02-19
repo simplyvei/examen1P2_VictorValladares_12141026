@@ -78,7 +78,13 @@ public class Escuadron {
 
     @Override
     public String toString() {
-        return "nombre = " + nombre + " lider = " + lider + " miembros = " + miembros;
+        String tipos = "";
+        if (isTipo() == true){
+            tipos = "Villanos";
+        }else{
+            tipos = "Heroes";
+        }
+        return "nombre = " + nombre +  " lugar = " + lugar + " tipo = " + tipos;
     }
     
 }

@@ -2,9 +2,11 @@ package examen1p2_victorvalladares_12141026;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Examen1P2_VictorValladares_12141026 {
+    public static Random r = new Random();
     public static ArrayList <Universo> universos = new ArrayList ();
     public static ArrayList <Persona> Heroes = new ArrayList ();
     public static ArrayList <Persona> Villanos = new ArrayList ();
@@ -40,12 +42,10 @@ public class Examen1P2_VictorValladares_12141026 {
             System.exit(0);
         }else if (op == 1){
             realizarUniverso( menuUniverso() );
-        }else if (op == 2){
-           realizarPersona( menuPersona() );
+        }else if (op == 2){       
+           realizarEscuadron( menuEscuadron() );
         }else if (op == 3){
-           
-        }else if (op == 4){
-            
+           realizarPersona( menuPersona() );
         }
     }
     
@@ -121,6 +121,20 @@ public class Examen1P2_VictorValladares_12141026 {
             lea.nextLine();
             System.out.print("Ingrese el nombre de la persoan: ");
             String nombre = lea.nextLine();
+            for (Persona lista_v : Villanos){
+                if (lista_v.getNombre().equalsIgnoreCase(nombre)){
+                    System.out.println("Ese nombre ya existe, intente de nuevo");
+                    System.out.print("Ingrese un nombre: ");
+                    nombre = lea.nextLine();
+                }
+            }
+            for (Persona lista_h : Heroes){
+                if (lista_h.getNombre().equalsIgnoreCase(nombre)){
+                    System.out.println("Ese nombre ya existe, intente de nuevo");
+                    System.out.print("Ingrese un nombre: ");
+                    nombre = lea.nextLine();
+                }
+            }
             System.out.print("Ingrese la Fuerza: ");
             int fuerza = lea.nextInt();
             System.out.print("Ingrese la habilidad mental: ");
@@ -467,7 +481,6 @@ public class Examen1P2_VictorValladares_12141026 {
         int pos1 = lea.nextInt();
         System.out.print("Ingrese la posicion del escuadron al que desea agregar: ");
         int pos2 = lea.nextInt();
-        boolean tipo = false;
         System.out.print("Ingrese el nombre de la squad: ");
         String nombre = lea.nextLine();
         int i = 0;
@@ -493,6 +506,24 @@ public class Examen1P2_VictorValladares_12141026 {
             int pos3 = lea.nextInt();
             Persona lider = universos.get(pos1).getSquads().get(pos2).getMiembros().get(pos3);
             universos.get(pos1).getSquads().get(pos2).setLider(lider);
+        }
+        boolean tipo = false;
+        System.out.print("Es un escuadron de villanos [si/no]: ");
+        String resp2 = lea.next();
+        int k = 0;
+        if (resp2.equalsIgnoreCase("si")){
+            tipo = true;
+            for (Universo lista : universos){
+                lista.getSquads().get(pos2).getMiembros().get(k).setVillano("villano");
+                lista.getSquads().get(pos2).getMiembros().get(k).setHeroe("");
+                k++;
+            }
+        }else{
+            for (Universo lista : universos){
+                lista.getSquads().get(pos2).getMiembros().get(k).setVillano("");
+                lista.getSquads().get(pos2).getMiembros().get(k).setHeroe("heroe");
+                k++;
+            }
         }
     }
     
@@ -538,6 +569,44 @@ public class Examen1P2_VictorValladares_12141026 {
     }
     
     public static void batalla(){
-        
+        System.out.print("Ingrese la posicion del universo donde se encuentra los escuadrones: ");
+        int pos1 = lea.nextInt();
+        System.out.print("Ingrese la posicion del primer escuadrona a pelear: ");
+        int pos2 = lea.nextInt();
+        System.out.print("Ingrese la posicion del segundo escuadrona a pelear: ");
+        int pos3 = lea.nextInt();
+        Persona p1 = universos.get(pos1).getSquads().get(pos2).getLider();
+        Persona p2 = universos.get(pos1).getSquads().get(pos3).getLider();
+        int atributo = r.nextInt(3)+1;
+        if (atributo == 1){
+            if (p1.getFuerza() > p2.getFuerza()){
+                System.out.println("Ha ganado el lider del primer equipo, preparandose para ultima chance");
+                
+            }else if (p1.getFuerza() < p2.getFuerza()){
+                System.out.println("Ha ganado el lider del segundo equipo, preparandose para ultima chance");
+            }else{
+                System.out.println("Hubo empate, no hay ganador");
+            }
+        }else if (atributo == 2){
+            if (p1.getFisica() > p2.getFisica()){
+                System.out.println("Ha ganado el lider del primer equipo, preparandose para ultima chance");
+                
+            }else if (p1.getFisica() < p2.getFisica()){
+                System.out.println("Ha ganado el lider del segundo equipo, preparandose para ultima chance");
+            }else{
+                System.out.println("Hubo empate, no hay ganador");
+            }
+        }else if (atributo == 3){
+            if (p1.getMental() > p2.getMental()){
+                System.out.println("Ha ganado el lider del primer equipo, preparandose para ultima chance");
+                
+            }else if (p1.getMental() < p2.getMental()){
+                System.out.println("Ha ganado el lider del segundo equipo, preparandose para ultima chance");
+            }else{
+                System.out.println("Hubo empate, no hay ganador");
+            }
+        }
     }
+    
+    
 }
